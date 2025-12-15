@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 8%;
+    --foreground: 45 30% 95%;
+
+    --card: 220 25% 12%;
+    --card-foreground: 45 30% 95%;
+
+    --popover: 220 25% 12%;
+    --popover-foreground: 45 30% 95%;
+
+    --primary: 0 72% 45%;
+    --primary-foreground: 45 30% 95%;
+
+    --secondary: 145 50% 25%;
+    --secondary-foreground: 45 30% 95%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 15% 60%;
+
+    --accent: 45 80% 55%;
+    --accent-foreground: 220 30% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 0 72% 45%;
+
+    --radius: 0.5rem;
+
+    /* Custom Christmas tokens */
+    --christmas-red: 0 72% 45%;
+    --christmas-green: 145 50% 25%;
+    --christmas-gold: 45 80% 55%;
+    --christmas-snow: 210 40% 98%;
+    --christmas-night: 220 30% 8%;
+    --christmas-pine: 150 40% 20%;
+
+    /* Gradients */
+    --gradient-festive: linear-gradient(
+      135deg,
+      hsl(var(--christmas-red)) 0%,
+      hsl(var(--christmas-pine)) 100%
+    );
+    --gradient-gold: linear-gradient(
+      135deg,
+      hsl(45, 80%, 55%) 0%,
+      hsl(35, 70%, 45%) 100%
+    );
+    --gradient-snow: linear-gradient(
+      180deg,
+      hsl(220, 30%, 8%) 0%,
+      hsl(220, 25%, 15%) 100%
+    );
+
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(var(--christmas-gold) / 0.3);
+    --shadow-red-glow: 0 0 40px hsl(var(--christmas-red) / 0.4);
+  }
+
+  .dark {
+    --background: 220 30% 8%;
+    --foreground: 45 30% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Mountains of Christmas", cursive;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Mountains of Christmas", cursive;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-red {
+    box-shadow: var(--shadow-red-glow);
+  }
+}
+
+/* Snowfall animation */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(20px);
+    opacity: 0.3;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--christmas-gold) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--christmas-gold) / 0.6);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+.animate-snowfall {
+  animation: snowfall linear infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Hidden clue styling */
+.secret-message::after {
+  content: "CLUE2: Check the jingle bells audio filename in DevTools Network tab";
+  display: none;
+}
